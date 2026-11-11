@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+}
+
+@layer base {
+    .dark {
+        color-scheme: dark;
+        background-color: var(--color-mauve-950);
+    }
+}
+
+@layer components {
+    .markdown {
+        @apply text-base leading-7 text-mauve-950 dark:text-mauve-100;
+
+        & > * + * {
+            @apply mt-4;
+        }
+
+        & h1 {
+            @apply mt-6 border-b border-mauve-200 pb-1 text-2xl font-semibold dark:border-mauve-800 dark:text-mauve-50;
+        }
+
+        & h2 {
+            @apply mt-6 border-b border-mauve-200 pb-1 text-xl font-semibold dark:border-mauve-800 dark:text-mauve-50;
+        }
+
+        & h3 {
+            @apply mt-5 text-lg font-semibold dark:text-mauve-50;
+        }
+
+        & a {
+            @apply text-mauve-800 underline dark:text-mauve-300;
+        }
+
+        & ul {
+            @apply list-disc pl-6;
+        }
+
+        & ol {
+            @apply list-decimal pl-6;
+        }
+
+        & ul[data-type='taskList'] {
+            @apply list-none pl-1;
+
+            & ul[data-type='taskList'] {
+                @apply pl-6;
+            }
+
+            & > li {
+                @apply flex items-start gap-2;
+
+                & > label {
+                    @apply flex h-7 shrink-0 items-center;
+                }
+
+                & > div {
+                    @apply min-w-0 flex-1;
+                }
+
+                &[data-checked='true'] > div > p {
+                    @apply text-mauve-500 line-through dark:text-mauve-400;
+                }
+            }
+
+            & input[type='checkbox'] {
+                @apply size-4 cursor-pointer accent-mauve-800 dark:accent-mauve-300;
+            }
+        }
+
+        & li > p {
+            @apply my-0;
+        }
+
+        & blockquote {
+            @apply border-l-[3px] border-mauve-300 pl-3 text-mauve-600 dark:border-mauve-700 dark:text-mauve-400;
+        }
+
+        & code {
+            @apply rounded-sm bg-mauve-100 px-1 font-mono text-sm dark:bg-mauve-900;
+        }
+
+        & pre {
+            @apply overflow-x-auto rounded-sm bg-mauve-50 px-3 py-2 font-mono text-sm leading-6 dark:bg-mauve-900;
+
+            & code {
+                @apply bg-transparent p-0;
+            }
+        }
+
+        & hr {
+            @apply border-mauve-200 dark:border-mauve-800;
+        }
+    }
+}
